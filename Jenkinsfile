@@ -16,5 +16,7 @@
 		mail bcc: '', body: '''Hi Welcome to jenkins email alerts
 		Build Failed
 		Mayank''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline Job', to: 'rathore.mayanksgh@gmail.com'
+		
+		currentBuild.result = 'FAILURE'
    }
 }
