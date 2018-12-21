@@ -4,7 +4,7 @@
 		git 'https://github.com/octopent/my-app'
 	}
 	stage('Compile-Package'){
-		def mvnHome =  tool name: 'jenkins-maven2', type: 'maven'   
+		def mvnHome =  tool name: 'jenkins-maven', type: 'maven'   
 		sh "${mvnHome}/bin/mvn package"
 	}
 	stage('Email Notification'){
