@@ -10,12 +10,12 @@
 	stage('Email Notification'){
 		mail bcc: '', body: '''Hi Welcome to jenkins email alerts
 		All Good!
-		Mayank''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline Job', to: 'kumar.abhishek5683@gmail.com'
+		Mayank''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline Job', to: 'rathore.mayanksgh@gmail.com'
 	}
    }catch (err){
 		mail bcc: '', body: '''Hi Welcome to jenkins email alerts
 		Build Failed
-		Mayank''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline Job', to: 'kumar.abhishek5683@gmail.com'
+		Mayank''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline Job', to: 'rathore.mayanksgh@gmail.com'
 		
 		currentBuild.result = 'FAILURE'
    }
