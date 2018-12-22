@@ -12,7 +12,7 @@
             withSonarQubeEnv('jenkins_sonar') {
                 sh 'mvn sonar:sonar'
         	}
-		}
+	   }
     	}
 	stage('Email Notification'){
 		mail bcc: '', body: '''Hi Welcome to jenkins email alerts
