@@ -40,6 +40,8 @@
 		Build Failed
 		Mayank''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline Job', to: 'rathore.mayanksgh@gmail.com'
 		
+		//setting build result as failed
 		currentBuild.result = 'FAILURE'
+		
    }
 }
