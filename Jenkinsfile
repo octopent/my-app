@@ -40,7 +40,7 @@
 		Build Failed
 		Mayank''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline Job', to: 'rathore.mayanksgh@gmail.com'
 		
-		
+		//ertyu
 		currentBuild.result = 'FAILURE'
 		
    }
