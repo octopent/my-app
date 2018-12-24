@@ -56,8 +56,6 @@
         }"""
     server.download(downloadSpec)
     }
-    
-    //asdfg
     //stage ('Final deploy'){
         //sh 'scp /var/lib/jenkins/warFiles/z12345.war minduseradmin@mnevm41269dns.WestUS.cloudapp.azure.com:/opt/tomcat/webapps/'
     //}
