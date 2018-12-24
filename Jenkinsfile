@@ -16,7 +16,7 @@
         }
     }
     
-    stage("Quality Gate Statuc Check"){
+    stage("Quality Gate Static Check"){
           timeout(time: 1, unit: 'HOURS') {
               def qg = waitForQualityGate()
               if (qg.status != 'OK') {
@@ -30,15 +30,46 @@
               }
           }
       }
+      stage('Artifact upload') {
+    def server = Artifactory.server 'jenkins_artifactory'
+   	def uploadSpec = """{
+     "files": [
+           {
+              "pattern": "/var/lib/jenkins/workspace/artifactory-dep-project/target/*.war",
+              "target": "mayank-snapshot"
+           }
+        ]
+        }"""
+    server.upload(uploadSpec)
+	}
+	
+	stage('downloading artifact')
+    {
+        def server = Artifactory.server 'jenkins_artifactory'
+        def downloadSpec="""{
+        "files":[
+        {
+           "pattern":"mayank-snapshot/z12345.war",
+            "target":"/var/lib/jenkins/warFiles/"
+        }
+        ]
+        }"""
+    server.download(downloadSpec)
+    }
+    
+    //stage ('Final deploy'){
+        //sh 'scp /var/lib/jenkins/warFiles/z12345.war minduseradmin@mnevm41269dns.WestUS.cloudapp.azure.com:/opt/tomcat/webapps/'
+    //}
 	stage('Email Notification'){
-		mail bcc: '', body: '''Hi Welcome to jenkins email alerts
+		mail bcc: '', body: '''Hi!
+		Your Build Passed!
 		All Good!
-		Mayank''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline Job', to: 'rathore.mayanksgh@gmail.com'
+		Mayank''', cc: '', from: '', replyTo: '', subject: 'BUILD SUCCESS', to: 'rathore.mayanksgh@gmail.com'
 	}
    }catch (err){
-		mail bcc: '', body: '''Hi Welcome to jenkins email alerts
-		Build Failed
-		Mayank''', cc: '', from: '', replyTo: '', subject: 'Jenkins Pipeline Job', to: 'rathore.mayanksgh@gmail.com'
+		mail bcc: '', body: '''Hi! 
+		Oops! Build Failed!
+		Mayank''', cc: '', from: '', replyTo: '', subject: 'BUILD FAILED', to: 'rathore.mayanksgh@gmail.com'
 		
 		//ertyu
 		currentBuild.result = 'FAILURE'
