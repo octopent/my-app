@@ -1,4 +1,4 @@
- node{
+node{
    try{
 	stage('SCM Checkout'){
      git 'https://github.com/octopent/my-app'
@@ -56,6 +56,7 @@
         }"""
     server.download(downloadSpec)
     }
+    
     //stage ('Final deploy'){
         //sh 'scp /var/lib/jenkins/warFiles/z12345.war minduseradmin@mnevm41269dns.WestUS.cloudapp.azure.com:/opt/tomcat/webapps/'
     //}
